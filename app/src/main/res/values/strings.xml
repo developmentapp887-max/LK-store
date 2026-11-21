@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">LK Store</string>
+    <string name="store_tagline">Verified Android Apps &amp; Indie Games</string>
+    <string name="sign_in_google">Sign in with Google</string>
+    <string name="sign_out">Sign out</string>
+    <string name="download_verified_apk">Download Verified APK</string>
+    <string name="update_apk">Update APK</string>
+    <string name="report_app">Report inappropriate app</string>
+    <string name="empty_catalog_title">No approved apps published yet</string>
+    <string name="empty_catalog_subtitle">LK Store displays applications with publication status set to approved in Cloud Firestore.</string>
+    <string name="cd_app_icon">Application icon</string>
+    <string name="cd_screenshot">Application screenshot</string>
+    <string name="cd_verified_badge">Verified APK checksum</string>
+    <string name="cd_notifications">Notifications</string>
+    <string name="cd_search">Search apps and games</string>
+    <string name="cd_account">Account and profile</string>
+    <string name="cd_back">Navigate back</string>
+    <string name="cd_wishlist">Toggle wishlist</string>
+</resources>

@@ -1,0 +1,284 @@
+{
+  "entities": {
+    "MarketplaceApp": {
+      "title": "MarketplaceApp",
+      "description": "Android application managed by LK APK POST and displayed on LK Store when status == approved.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "packageName": { "type": "string" },
+        "developerId": { "type": "string" },
+        "developerName": { "type": "string" },
+        "category": { "type": "string" },
+        "appType": { "type": "string", "enum": ["app", "game"] },
+        "summary": { "type": "string" },
+        "description": { "type": "string" },
+        "changelog": { "type": "string" },
+        "iconUrl": { "type": "string" },
+        "screenshots": { "type": "array" },
+        "apkUrl": { "type": "string" },
+        "sha256": { "type": "string" },
+        "versionName": { "type": "string" },
+        "versionCode": { "type": "integer" },
+        "fileSizeBytes": { "type": "integer" },
+        "minSdk": { "type": "integer" },
+        "status": { "type": "string", "enum": ["draft", "pending", "approved", "rejected", "suspended"] },
+        "rejectionReason": { "type": "string" },
+        "reviewedBy": { "type": "string" },
+        "privacyPolicyUrl": { "type": "string" },
+        "contentRating": { "type": "string" },
+        "featured": { "type": "boolean" },
+        "verified": { "type": "boolean" },
+        "downloadCount": { "type": "integer" },
+        "ratingAverage": { "type": "number" },
+        "ratingCount": { "type": "integer" },
+        "tags": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "reviewedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "packageName", "developerId", "developerName", "category", "appType", "description", "apkUrl", "versionName", "versionCode", "fileSizeBytes", "status", "createdAt", "updatedAt"]
+    },
+    "AppRelease": {
+      "title": "AppRelease",
+      "description": "Versioned APK release record submitted through LK APK POST.",
+      "type": "object",
+      "properties": {
+        "appId": { "type": "string" },
+        "developerId": { "type": "string" },
+        "versionName": { "type": "string" },
+        "versionCode": { "type": "integer" },
+        "apkUrl": { "type": "string" },
+        "sha256": { "type": "string" },
+        "fileSizeBytes": { "type": "integer" },
+        "minSdk": { "type": "integer" },
+        "releaseNotes": { "type": "string" },
+        "track": { "type": "string", "enum": ["production", "beta", "internal"] },
+        "status": { "type": "string", "enum": ["draft", "pending", "approved", "rejected"] },
+        "rejectionReason": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["appId", "developerId", "versionName", "versionCode", "apkUrl", "fileSizeBytes", "track", "status", "createdAt", "updatedAt"]
+    },
+    "PublishingEvent": {
+      "title": "PublishingEvent",
+      "description": "Immutable publishing and moderation audit log entry.",
+      "type": "object",
+      "properties": {
+        "appId": { "type": "string" },
+        "appTitle": { "type": "string" },
+        "developerId": { "type": "string" },
+        "actorId": { "type": "string" },
+        "action": { "type": "string", "enum": ["created_draft", "submitted", "approved", "rejected", "suspended", "release_submitted", "release_approved"] },
+        "versionName": { "type": "string" },
+        "note": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["appId", "appTitle", "developerId", "actorId", "action", "createdAt"]
+    },
+    "DeveloperProfile": {
+      "title": "DeveloperProfile",
+      "description": "Developer console account and public publisher storefront metadata.",
+      "type": "object",
+      "properties": {
+        "developerId": { "type": "string" },
+        "name": { "type": "string" },
+        "organizationName": { "type": "string" },
+        "bio": { "type": "string" },
+        "website": { "type": "string" },
+        "supportUrl": { "type": "string" },
+        "country": { "type": "string" },
+        "verified": { "type": "boolean" },
+        "status": { "type": "string", "enum": ["active", "suspended"] },
+        "logoUrl": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["developerId", "name"]
+    },
+    "AppReview": {
+      "title": "AppReview",
+      "description": "Authenticated user rating and review for an app.",
+      "type": "object",
+      "properties": {
+        "appId": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userAvatarUrl": { "type": "string" },
+        "rating": { "type": "integer" },
+        "comment": { "type": "string" },
+        "versionName": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["appId", "userId", "userName", "rating", "comment", "createdAt", "updatedAt"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Owner-scoped LK Store user profile.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoUrl": { "type": "string" },
+        "bio": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "displayName", "createdAt", "updatedAt"]
+    },
+    "WishlistItem": {
+      "title": "WishlistItem",
+      "description": "Bookmarked application in a user's wishlist.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "appId": { "type": "string" },
+        "appTitle": { "type": "string" },
+        "developerName": { "type": "string" },
+        "iconUrl": { "type": "string" },
+        "category": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "appId", "appTitle", "developerName", "category", "createdAt"]
+    },
+    "LibraryItem": {
+      "title": "LibraryItem",
+      "description": "Application downloaded or tracked in a user's personal library for update checks.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "appId": { "type": "string" },
+        "appTitle": { "type": "string" },
+        "packageName": { "type": "string" },
+        "developerName": { "type": "string" },
+        "iconUrl": { "type": "string" },
+        "versionName": { "type": "string" },
+        "versionCode": { "type": "integer" },
+        "fileSizeBytes": { "type": "integer" },
+        "apkUrl": { "type": "string" },
+        "sha256": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "appId", "appTitle", "packageName", "developerName", "versionName", "versionCode", "fileSizeBytes", "apkUrl", "createdAt", "updatedAt"]
+    },
+    "DownloadHistoryEntry": {
+      "title": "DownloadHistoryEntry",
+      "description": "Immutable log entry of an APK download initiated by the user.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "appId": { "type": "string" },
+        "appTitle": { "type": "string" },
+        "developerName": { "type": "string" },
+        "iconUrl": { "type": "string" },
+        "versionName": { "type": "string" },
+        "versionCode": { "type": "integer" },
+        "fileSizeBytes": { "type": "integer" },
+        "sha256": { "type": "string" },
+        "verified": { "type": "boolean" },
+        "downloadedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "appId", "appTitle", "developerName", "versionName", "versionCode", "fileSizeBytes", "verified", "downloadedAt"]
+    },
+    "UserNotification": {
+      "title": "UserNotification",
+      "description": "User notification for app updates, verified downloads, or account alerts.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "type": { "type": "string", "enum": ["update", "download", "security", "system"] },
+        "appId": { "type": "string" },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "message", "type", "read", "createdAt", "updatedAt"]
+    },
+    "AppReport": {
+      "title": "AppReport",
+      "description": "User report flagging an inappropriate or unsafe application.",
+      "type": "object",
+      "properties": {
+        "reporterId": { "type": "string" },
+        "appId": { "type": "string" },
+        "appTitle": { "type": "string" },
+        "reason": { "type": "string", "enum": ["malware", "spam", "copyright", "inappropriate", "broken_link", "other"] },
+        "details": { "type": "string" },
+        "status": { "type": "string", "enum": ["open", "reviewed", "dismissed", "action_taken"] },
+        "resolutionNote": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["reporterId", "appId", "appTitle", "reason", "details", "status", "createdAt"]
+    },
+    "SupportTicket": {
+      "title": "SupportTicket",
+      "description": "Help and support inquiry submitted by an authenticated user or developer.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "subject": { "type": "string" },
+        "category": { "type": "string", "enum": ["downloads", "account", "developer", "security", "other"] },
+        "message": { "type": "string" },
+        "status": { "type": "string", "enum": ["open", "in_progress", "resolved"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "userName", "subject", "category", "message", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/apps/{appId}": {
+      "schema": "MarketplaceApp",
+      "description": "Application catalog shared between LK APK POST and LK Store."
+    },
+    "/apps/{appId}/releases/{releaseId}": {
+      "schema": "AppRelease",
+      "description": "Versioned APK releases for an application."
+    },
+    "/apps/{appId}/reviews/{reviewId}": {
+      "schema": "AppReview",
+      "description": "User ratings and reviews for an application (reviewId == userId)."
+    },
+    "/developers/{developerId}": {
+      "schema": "DeveloperProfile",
+      "description": "Developer console and public publisher profile information."
+    },
+    "/publishing_history/{eventId}": {
+      "schema": "PublishingEvent",
+      "description": "Immutable publishing & moderation audit history."
+    },
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Private owner-scoped LK Store user profile."
+    },
+    "/users/{userId}/wishlist/{appId}": {
+      "schema": "WishlistItem",
+      "description": "User-owned app wishlist."
+    },
+    "/users/{userId}/library/{appId}": {
+      "schema": "LibraryItem",
+      "description": "User-owned app library tracking downloaded versions for update detection."
+    },
+    "/users/{userId}/download_history/{entryId}": {
+      "schema": "DownloadHistoryEntry",
+      "description": "User-owned APK download history."
+    },
+    "/users/{userId}/notifications/{notificationId}": {
+      "schema": "UserNotification",
+      "description": "User-owned update and security notifications."
+    },
+    "/reports/{reportId}": {
+      "schema": "AppReport",
+      "description": "Abuse and safety reports submitted by users and reviewed by admins."
+    },
+    "/support_tickets/{ticketId}": {
+      "schema": "SupportTicket",
+      "description": "Help and support tickets submitted by users and developers."
+    }
+  }
+}

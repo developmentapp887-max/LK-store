@@ -1,0 +1,6 @@
+{
+  "name": "LK Store",
+  "description": "Public Android app marketplace with verified APK downloads, ratings, wishlist, and developer profiles powered by Firebase.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
